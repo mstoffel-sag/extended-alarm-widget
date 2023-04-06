@@ -1,11 +1,15 @@
 import { Injectable, resolveForwardRef } from '@angular/core';
 import { IAlarm, InventoryService, AlarmService, Realtime, IManagedObject, Severity } from '@c8y/client';
+import { Subject } from 'rxjs';
 //import {AlarmRealtimeService} from '@c8y/ngx-components';
 
 @Injectable()
 export class MyAlarmService {
+  alarmSubject$: Subject<Map<number | string, IAlarm> > =
+    new Subject<Map<number | string, IAlarm>>();
   currentAlarms =  new Map<number | string, IAlarm>();
   private realtimeSubscription: object;
+
 
 
   constructor(
@@ -55,7 +59,7 @@ export class MyAlarmService {
       response.data.forEach(al => {
         this.currentAlarms.set(al.id,al);
       });
-      
+      this.alarmSubject$.next(this.currentAlarms);
     } catch (error) {
       console.error('Error occurred while loading the latest alarm: ', error);
     }
@@ -70,6 +74,7 @@ export class MyAlarmService {
       (alarmNotification) => {
         const alarm: IAlarm = alarmNotification.data.data;
         this.currentAlarms.set(alarm.id, alarm);
+        this.alarmSubject$.next(this.currentAlarms);
       }
     );
   }

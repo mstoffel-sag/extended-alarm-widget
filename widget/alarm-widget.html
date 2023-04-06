@@ -14,7 +14,7 @@
   <div class="form-group">
     <label>{{ 'Alarms' | translate }}</label>
     <p class="form-control-static">
-      <li *ngFor="let alarm of alarmService.currentAlarms | keyvalue">
+      <li *ngFor="let alarm of alarmService.alarmSubject$ | async | keyvalue">
         {{alarm.value.id}} {{alarm.value.text}} {{alarm.value.status}} {{alarm.value.severity}}
     <li>
     </p>
