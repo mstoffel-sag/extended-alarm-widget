@@ -6,13 +6,14 @@ import {
   HOOK_COMPONENTS,
   FormsModule,
   DynamicComponentDefinition,
-  gettext
+  gettext,
+  CoreModule
 } from '@c8y/ngx-components';
 
 @NgModule({
   declarations: [WidgetPluginComponent, WidgetPluginConfig],
   entryComponents: [WidgetPluginComponent, WidgetPluginConfig],
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, CoreModule],
   exports: [],
   providers: [
     {

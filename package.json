@@ -54,7 +54,7 @@
       "package": "plugin",
       "exports": [
         {
-          "name": "Example widget plugin",
+          "name": "Extended Alarm Widget",
           "module": "WidgetPluginModule",
           "path": "./widget/extended-alarm-widget-plugin.module.ts",
           "description": "Adds a custom widget to the shell application"

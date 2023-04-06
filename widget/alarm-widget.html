@@ -1,0 +1,22 @@
+<div>{{ 'Device info' | translate }}</div>
+
+<div class="cp-l-16 p-r-16" *ngIf="deviceDetails">
+  <p class="legend form-block">{{ 'Current Alarms' | translate }}</p>
+  <div class="form-group">
+    <label>{{ 'Name' | translate }}</label>
+    <p class="form-control-static">{{ deviceDetails.name }}</p>
+  </div>
+  <div class="form-group">
+    <label>{{ 'Type' | translate }}</label>
+    <p class="form-control-static">{{ deviceDetails.type }}</p>
+  </div>
+  <p class="legend form-block">{{ 'Alarms' | translate }}</p>
+  <div class="form-group">
+    <label>{{ 'Alarms' | translate }}</label>
+    <p class="form-control-static">
+      <li *ngFor="let alarm of alarmService.currentAlarms | keyvalue">
+        {{alarm.value.id}} {{alarm.value.text}} {{alarm.value.status}} {{alarm.value.severity}}
+    <li>
+    </p>
+  </div>
+</div>
